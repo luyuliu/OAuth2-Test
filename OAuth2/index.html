@@ -34,22 +34,20 @@
     }
     console.log(parameters)
 
-    if (window.opener && window.opener !== window) {
-        // you are in a popup
-        console.log("I am in a simulation")
-
-        window.opener.callback(parameters["code"])
-        window.close()
-    }
-    else {
-        console.log("I am NOT in a simulation")
-    }
+    // if (window.opener && window.opener !== window) {
+    //     // you are in a popup
+    //     console.log("I am in a simulation")
+    // }
+    // else {
+    //     console.log("I am NOT in a simulation")
+    // }
 
     $("#clicky").click(function (e) {
         $.oauthpopup({
             path: 'https://orcid.org/oauth/authorize?client_id=APP-DLPNQXW5KIQF1YLW&response_type=code&scope=/authenticate&redirect_uri=https://luyuliu.github.io/playground/OAuth2',
             callback: function () {
-                document.location.reload(true);
+                window.opener.callback(parameters["code"])
+                window.close() // suicide and wake up
             }
         });
 
