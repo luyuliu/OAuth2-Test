@@ -38,8 +38,8 @@
         // you are in a popup
         console.log("I am in a simulation")
 
-        console.log(window.opener.callback(parameters["code"]))
-
+        window.opener.callback(parameters["code"])
+        window.close()
     }
     else {
         console.log("I am NOT in a simulation")
