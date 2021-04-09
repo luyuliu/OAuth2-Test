@@ -25,10 +25,24 @@
 </body>
 
 <script>
+    var totem = true;
+    if (window.opener && window.opener !== window) {
+        // you are in a popup
+        console.log("I am in a simulation")
+        totem = false;
+    }
+    else {
+        console.log("I am NOT in a simulation")
+    }
 
     // var search = location.search.substring(1);
     var url = window.location.href;
-    var search = url.split("#")[1] // Depends on the split
+
+
+    var search = location.search.substring(1); // try ? dividing
+    if (search === "" && totem == false) {
+        search = url.split("#")[1] // Dividing by #
+    }
     console.log(search)
 
     if (search != "") {
@@ -36,15 +50,9 @@
     }
     console.log(parameters)
 
-    if (window.opener && window.opener !== window) {
-        // you are in a popup
-        console.log("I am in a simulation")
-
+    if (!totem) {
         window.opener.callback(parameters)
         window.close() // suicide and wake up
-    }
-    else {
-        console.log("I am NOT in a simulation")
     }
 
     $("#clicky").click(function (e) {
