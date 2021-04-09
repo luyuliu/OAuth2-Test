@@ -26,7 +26,9 @@
 
 <script>
 
-    var search = location.search.substring(1);
+    // var search = location.search.substring(1);
+    var url = window.location.href;
+    var search = url.split("#")[1] // Depends on the split
     console.log(search)
 
     if (search != "") {
@@ -47,7 +49,7 @@
 
     $("#clicky").click(function (e) {
         $.oauthpopup({
-            path: 'https://orcid.org/oauth/authorize?response_type=token&client_id=APP-DLPNQXW5KIQF1YLW&scope=/authenticate&redirect_uri=https://luyuliu.github.io/playground/OAuth2',
+            path: 'https://orcid.org/oauth/authorize?client_id=APP-DLPNQXW5KIQF1YLW&response_type=token&scope=openid&redirect_uri=https://luyuliu.github.io/playground/OAuth2',
             callback: function () {
             }
         });
